@@ -108,4 +108,50 @@ public class TicketServiceImplTest {
                      ).getTotalPrice()
         );
     }
+
+    @Test
+    public void Should_Return1_When_TicketIsForAdult() {
+        TicketTypeRequest ticketRequestAdult = new TicketTypeRequest(ADULT, 1);
+        TicketTypeRequest ticketRequestInfant = new TicketTypeRequest(INFANT, 1);
+        assertEquals(1,
+                     ticketServiceUtil.generateTickets(
+                             ticketRequestAdult,
+                             ticketRequestInfant
+                     ).getTotalNumOfSeats()
+        );
+    }
+
+    @Test
+    public void Should_Return1_When_TicketIsForAdultAndInfant() {
+        TicketTypeRequest ticketRequestAdult = new TicketTypeRequest(ADULT, 1);
+        TicketTypeRequest ticketRequestInfant = new TicketTypeRequest(INFANT, 1);
+        assertEquals(1,
+                     ticketServiceUtil.generateTickets(
+                             ticketRequestAdult,
+                             ticketRequestInfant
+                     ).getTotalNumOfSeats()
+        );
+    }
+
+    @Test
+    public void Should_Return2_When_TicketIsForAdultChildAndInfant() {
+        TicketTypeRequest ticketRequestAdult = new TicketTypeRequest(ADULT, 1);
+        TicketTypeRequest ticketRequestChild = new TicketTypeRequest(CHILD, 1);
+        TicketTypeRequest ticketRequestInfant = new TicketTypeRequest(INFANT, 1);
+        assertEquals(2,
+                     ticketServiceUtil.generateTickets(
+                             ticketRequestAdult,
+                             ticketRequestChild,
+                             ticketRequestInfant
+                     ).getTotalNumOfSeats()
+        );
+    }
+
+    @Test
+    public void Should_Return7_When_TicketIsFor7Adults() {
+        TicketTypeRequest ticketRequestAdults = new TicketTypeRequest(ADULT, 7);
+        assertEquals(7,
+                     ticketServiceUtil.generateTickets(ticketRequestAdults).getTotalNumOfSeats()
+        );
+    }
 }
