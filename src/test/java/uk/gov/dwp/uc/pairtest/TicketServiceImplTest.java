@@ -67,5 +67,45 @@ public class TicketServiceImplTest {
         );
     }
 
+    @Test
+    public void Should_Return20_When_TicketIsForAdult() {
+        TicketTypeRequest ticketTypeRequest = new TicketTypeRequest(ADULT, 1);
+        assertEquals(20, ticketServiceUtil.generateTickets(ticketTypeRequest).getTotalPrice());
+    }
 
+    @Test
+    public void Should_Return10_When_TicketIsForChild() {
+        TicketTypeRequest ticketTypeRequest = new TicketTypeRequest(CHILD, 1);
+        assertEquals(10, ticketServiceUtil.generateTickets(ticketTypeRequest).getTotalPrice());
+    }
+
+    @Test
+    public void Should_Return0_When_TicketIsForInfant() {
+        TicketTypeRequest ticketTypeRequest = new TicketTypeRequest(INFANT, 1);
+        assertEquals(0, ticketServiceUtil.generateTickets(ticketTypeRequest).getTotalPrice());
+    }
+
+    @Test
+    public void Should_Return100_When_TicketIsFor5AdultsAnd1Infant() {
+        TicketTypeRequest ticketRequestAdults = new TicketTypeRequest(ADULT, 5);
+        TicketTypeRequest ticketRequestInfant = new TicketTypeRequest(INFANT, 1);
+        assertEquals(100,
+                     ticketServiceUtil.generateTickets(
+                             ticketRequestAdults,
+                             ticketRequestInfant
+                     ).getTotalPrice()
+        );
+    }
+
+    @Test
+    public void Should_Return110_When_TicketIsFor5AdultsAnd1Child() {
+        TicketTypeRequest ticketRequestAdults = new TicketTypeRequest(ADULT, 5);
+        TicketTypeRequest ticketRequestChild = new TicketTypeRequest(CHILD, 1);
+        assertEquals(110,
+                     ticketServiceUtil.generateTickets(
+                             ticketRequestAdults,
+                             ticketRequestChild
+                     ).getTotalPrice()
+        );
+    }
 }
