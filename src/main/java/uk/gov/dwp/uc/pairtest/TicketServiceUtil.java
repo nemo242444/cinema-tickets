@@ -48,6 +48,9 @@ public class TicketServiceUtil {
 
         reservation.setTicket(tickets);
         reservation.setTotalPrice(tickets.stream().mapToInt(Ticket::getPrice).sum());
+        reservation.setTotalNumOfSeats(
+                (int) tickets.stream().filter(ticket -> ticket.getIsSeatRequired() == true).count()
+        );
 
         return reservation;
     }
