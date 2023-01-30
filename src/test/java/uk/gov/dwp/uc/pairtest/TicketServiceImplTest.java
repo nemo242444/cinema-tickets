@@ -1,8 +1,10 @@
 package uk.gov.dwp.uc.pairtest;
 
 import org.junit.Test;
+import uk.gov.dwp.uc.pairtest.domain.TicketTypeRequest;
 
 import static org.junit.Assert.assertEquals;
+import static uk.gov.dwp.uc.pairtest.domain.TicketTypeRequest.Type.*;
 
 public class TicketServiceImplTest {
 
